@@ -10,13 +10,7 @@ request("http://reddit.com/r/popular.json", function (error, response, body) {
     }
 
     JSON.parse(body).data.children.forEach(item => {
-        console.log(item.data.title);
-    });
-
-    fs.writeFile(dataPath, response.body, error => {
-        if(error){
-            console.log(error);
-        }
+        fs.appendFileSync(dataPath, item.data.title + "\n");
     });
 });
 
